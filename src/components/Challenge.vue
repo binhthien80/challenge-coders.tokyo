@@ -82,7 +82,7 @@ export default {
         if (this.aws === this.getVideoChallenge.answer) {
           this.$toasted.show(`Correct anwser`, {
             type: "success",
-            position: "bottom-left",
+            position: "top-left",
             duration: 2000
           });
           setTimeout(() => (this.loading = true), 300);
@@ -90,7 +90,7 @@ export default {
         } else {
           return this.$toasted.show(`Wrong anwser`, {
             type: "error",
-            position: "bottom-left",
+            position: "top-left",
             duration: 2000
           });
         }
