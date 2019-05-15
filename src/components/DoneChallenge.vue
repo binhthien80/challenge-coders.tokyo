@@ -1,6 +1,6 @@
 <template>
   <v-layout row>
-    <v-flex xs12 sm6 offset-sm3 class="done-challenge">
+    <v-flex xs12 class="done-challenge">
       <v-card>
         <v-toolbar color="indigo" dark>
           <v-toolbar-side-icon></v-toolbar-side-icon>
@@ -52,5 +52,9 @@ export default {
     .done-challenge {
         max-height: 90vh;
         overflow: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
     }
 </style>

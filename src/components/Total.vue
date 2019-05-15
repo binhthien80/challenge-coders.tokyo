@@ -1,7 +1,7 @@
 <template>
   <div class="text-xs-center total">
     <div v-for="i in getChallenge" :key="i.id" >
-        <v-btn outline fab :color="i.isComplete ? 'teal' : 'error'">
+        <v-btn outline fab :color="renderColor(i.id)"> 
             {{i.id}}
         </v-btn>
     </div>
@@ -12,7 +12,18 @@
 import { mapGetters } from 'vuex'
 export default {
     computed: {
-        ...mapGetters(['getChallenge'])
+        ...mapGetters(['getChallenge', 'getIsLogin']),
+        renderColor: function () {
+            return i => {
+                if ( i < this.getIsLogin.login.data.currentChallenge - 0 ) {
+                    return 'teal'
+                } else if ( i == this.getIsLogin.login.data.currentChallenge - 0 ) {
+                    return '#68228B'
+                } else {
+                    return 'error'
+                }
+            }
+        }
     },
 }
 </script>
@@ -22,9 +33,11 @@ export default {
         justify-content: center;
         align-items: center;
         height: 90vh;
-        width: 90%;
+        width: 100%;
         margin: auto;
-        flex-wrap: wrap;
-        
+        flex-wrap: wrap; 
+        position: fixed;
+        top: 0;
+        left: 0;
     }
 </style>

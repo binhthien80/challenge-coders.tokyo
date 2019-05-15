@@ -8,7 +8,7 @@
   position: fixed;
   width: 100%;
   height: 100vh;
-  background: #dd0000;
+  background: #CD2626;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,18 +21,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 10px solid #FF3030;
     & > span {
-      font-size: 80px;
-      color: #dd0000;
+      font-size: 90px;
+      color: #FF3030;
       font-weight: bold;
     }
     & > span:nth-child(1) {
-    }
-    & > span:nth-child(2),
-    & > span:nth-child(3),
-    & > span:nth-child(4) {
-      color: #dd0000;
-      border-radius: 50%;
+      margin-right: 40px;
     }
   }
 }
