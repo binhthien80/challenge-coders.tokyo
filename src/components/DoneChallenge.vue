@@ -29,7 +29,7 @@
               <v-list-tile-title v-text="'Question ' + item.id + ': '"></v-list-tile-title>
             </v-list-tile-content>
             <v-list-tile-content>
-              <v-list-tile-title v-text="item.answer"></v-list-tile-title>
+              <v-list-tile-title v-text="item.id === '11' ? '???' : item.answer"></v-list-tile-title>
             </v-list-tile-content>
             <v-list-tile-avatar style="color: #009688">
                <v-icon v-if="true" color="#009688">check_circle</v-icon>

@@ -16,8 +16,25 @@
             required
             v-if="getVideoChallenge.id > 2"
           ></v-text-field>
-          <v-btn color="success" @click="test()">Test</v-btn>
+          <div class="text-xs-center" @click="test()">
+            <v-btn
+              :disabled="dialog"
+              :loading="dialog"
+              class="white--text"
+              color="success darken-2"
+              @click="dialog = true"
+            >{{ getVideoChallenge.id < 3 ? 'Next challenge' : 'test' }}</v-btn>
+            <v-dialog v-model="dialog" hide-overlay persistent width="300">
+              <v-card color="success" dark>
+                <v-card-text>
+                  {{ getVideoChallenge.id < 3 ? 'Loading the next account' : 'Checking the results' }}
+                  <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+                </v-card-text>
+              </v-card>
+            </v-dialog>
+          </div>
         </div>
+        <BottomSheets />
       </div>
     </transition>
     <div class="congratulations" v-if="loading1">
@@ -27,55 +44,69 @@
 </template>
 <script>
 /* eslint-disable */
-
+import BottomSheets from '@/components/BottomSheets'
 import { mapGetters, mapMutations } from "vuex";
 export default {
   watch: {
-    getCurrentChallenge: function(oldVal, newVal) {
-      if (newVal === "done") {
-        return this.$toasted.show(
-          `Congratulations on completing the challenge`,
-          { type: "success", position: "bottom-left", duration: 2000 }
-        );
-      }
-      if (oldVal.id !== newVal.id) {
-        this.aws = "";
-        return this.$toasted.show(`Overcome question ${oldVal.id}`, {
-          type: "success",
-          position: "bottom-left",
-          duration: 2000
-        });
-      }
+    loader() {
+      const l = this.loader;
+      this[l] = !this[l];
+
+      setTimeout(() => (this[l] = false), 1500);
+
+      this.loader = null;
+    },
+    dialog (val) {
+      if (!val) return
+      setTimeout(() => (this.dialog = false), 3000)
     }
   },
+  components: {
+    BottomSheets
+  },
   computed: {
-    ...mapGetters(["getCurrentChallenge", "getChallenge", "getVideoChallenge"])
+    ...mapGetters(["getChallenge", "getVideoChallenge"])
   },
   data() {
     return {
       aws: "",
       loading: false,
-      loading1: false
+      loading1: false,
+      dialog: false
     };
   },
   methods: {
     ...mapMutations(["checkAws"]),
     test() {
-      if (this.aws === this.getVideoChallenge.answer) {
-        setTimeout(() => (this.loading = true), 1000);
-        setTimeout(() => (this.loading1 = true), 1500);
-      }
+      setTimeout(() => {
+        if (this.aws === this.getVideoChallenge.answer) {
+          this.$toasted.show(`Correct anwser`, {
+            type: "success",
+            position: "bottom-left",
+            duration: 2000
+          });
+          setTimeout(() => (this.loading = true), 300);
+          setTimeout(() => (this.loading1 = true), 800);
+        } else {
+          return this.$toasted.show(`Wrong anwser`, {
+            type: "error",
+            position: "bottom-left",
+            duration: 2000
+          });
+        }
+      }, 3200);
     }
   }
 };
 </script>
 <style lang="scss" scope>
 .challenge-ct {
-  max-height: 90vh;
+  height: 90vh;
   overflow: auto;
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
 }
 .answer,
 .congratulations {
@@ -104,8 +135,44 @@ export default {
   }
 }
 video {
-  max-height: 520px;
+  height: 450px;
   box-shadow: 0px 0px 5px 0 rgba(0, 0, 0, 0.6);
+}
+.custom-loader {
+  animation: loader 1s infinite;
+  display: flex;
+}
+@-moz-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 @media only screen and (min-width: 768px) {
   video {

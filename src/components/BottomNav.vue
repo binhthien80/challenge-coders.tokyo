@@ -24,11 +24,11 @@
         <v-icon>bar_chart</v-icon>
       </v-btn>
       <v-btn color="teal" :disabled="getVideoChallenge.id === '11' ? false : true" flat value="DoneChallenge">
-        <span>Done Challenge</span>
+        <span>Challenge table</span>
         <v-icon>done_all</v-icon>
       </v-btn>
-      <v-btn color="teal" :v-if="getVideoChallenge.id === '11'" flat value="Help">
-        <span>Help</span>
+      <v-btn color="teal" v-if="getVideoChallenge.id === '11'" flat value="Help">
+        <span>Final</span>
         <v-icon>help_outline</v-icon>
       </v-btn>
     </v-bottom-nav>

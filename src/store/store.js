@@ -3,10 +3,11 @@ import Vue from "vue";
 import Vuex from "vuex";
 import _ from 'lodash';
 import videoMinh from '@/../video/hpbd-ngo-minh.mp4'
-import videoDung from '@/../video/mai-the-dung-da-nang.mp4'
+import videoDung from '@/../video/Hpbd-TheDung.mp4'
 import videoHai from '@/../video/hpny-ChauHai.mp4'
 import videoSon from '@/../video/hpbd-thaison.mp4'
 import videoQuynh from '@/../video/hpbd-nhu-quynh.mp4'
+import videoQuang from '@/../video/hpbd-hong-quang.mp4'
 
 import api from '@/services/api'
 Vue.use(Vuex);
@@ -23,7 +24,7 @@ export const store = new Vuex.Store({
         id: "1",
         url: videoQuynh,
         isComplete: false,
-        auth: "NhuQuynh",
+        auth: "Nhu Quynh",
         answer: "",
         message: 'Congratulations on passing the number 1 challenge. Account number 2 will be: maidat - maidat'
       },
@@ -31,7 +32,7 @@ export const store = new Vuex.Store({
         id: "2",
         url: videoDung,
         isComplete: false,
-        auth: "MaiDat",
+        auth: "Mai Dat",
         answer: "",
         message: 'Congratulations on passing the number 2 challenge. Account number 3 will be: ducnguyen - ducnguyen'
       },
@@ -39,74 +40,83 @@ export const store = new Vuex.Store({
         id: "3",
         url: videoMinh,
         isComplete: false,
-        auth: "DucNguyen",
+        auth: "Duc Nguyen",
         answer: "626",
-        message: 'Congratulations on passing the number 3 challenge. Account number 4 will be: minhtoan - codersx@626'
+        message: 'Congratulations on passing the number 3 challenge. Account number 4 will be: minhtoan - codersx@626',
+        challenge: 'Tính tổng mã Unicode của các ký tự trong “coders.tokyo"'
       },
       {
         id: "4",
         url: videoDung,
         isComplete: false,
-        auth: "MinhToan",
+        auth: "Minh Toan",
         answer: "28",
-        message: 'Congratulations on passing the number 4 challenge. Account number 5 will be: thedung - codersx@28'
+        message: 'Congratulations on passing the number 4 challenge. Account number 5 will be: thedung - codersx@28',
+        challenge: 'Ngày sinh của Thành Tôn là ngày mấy?'
       },
       {
         id: "5",
-        url: videoMinh,
+        url: videoDung,
         isComplete: false,
-        auth: "TheDung",
+        auth: "The Dung",
         answer: "14",
-        message: 'Congratulations on passing the number 5 challenge. Account number 6 will be: thaison - codersx@14'
+        message: 'Congratulations on passing the number 5 challenge. Account number 6 will be: thaison - codersx@14',
+        challenge: 'Trong ID của Fanpage, ghép phần tử có index 10 và 11 thành một số 2 chữ số.'
       },
       {
         id: "6",
         url: videoSon,
         isComplete: false,
-        auth: "ThaiSon",
+        auth: "Thai Son",
         answer: "20",
-        message: 'Congratulations on passing the number 6 challenge. Account number 7 will be: ngominh - codersx@20'
+        message: 'Congratulations on passing the number 6 challenge. Account number 7 will be: ngominh - codersx@20',
+        challenge: 'Tổng tháng sinh của 2 leaders 19 tuổi trong team Cần Thơ'
       },
       {
         id: "7",
         url: videoMinh,
         isComplete: false,
-        auth: "NgoMinh",
+        auth: "Ngo Minh",
         answer: "22",
-        message: 'Congratulations on passing the number 7 challenge. Account number 8 will be: hongquang - codersx@22'
+        message: 'Congratulations on passing the number 7 challenge. Account number 8 will be: hongquang - codersx@22',
+        challenge: '2 chữ số cuối trong số điện thoại của Mai Đạt, cộng thêm 1 rồi chia cho 2'
       },
       {
         id: "8",
-        url: videoDung,
+        url: videoQuang,
         isComplete: false,
-        auth: "HongQuang",
+        auth: "Hong Quang",
         answer: "17",
-        message: 'Congratulations on passing the number 8 challenge. Account number 9 will be: thanhton - codersx@17'
+        message: 'Congratulations on passing the number 8 challenge. Account number 9 will be: thanhton - codersx@17',
+        challenge: 'Tổng số danh sách phát của kênh Youtube tính đến đầu tháng 5?'
       },
       {
         id: "9",
         url: videoMinh,
         isComplete: false,
-        auth: "ThanhTon",
+        auth: "Thanh Ton",
         answer: "24",
-        message: 'Congratulations on passing the number 9 challenge. Account number 10 will be: longnguyet - codersx@24'
+        message: 'Congratulations on passing the number 9 challenge. Account number 10 will be: longnguyet - codersx@24',
+        challenge: 'Tổng số ký tự từ tên đầy đủ của Ngô Minh và Danh lợi (no space) cộng với true?'
       },
       {
         id: "10",
         url: videoDung,
         isComplete: false,
-        auth: "LongNguyet",
+        auth: "Long Nguyet",
         answer: "954",
-        message: 'Congratulations on passing the number 10 challenge. Account number 11 will be: chauhai - codersx@954'
+        message: 'Congratulations on passing the number 10 challenge. Account number 11 will be: chauhai - codersx@954',
+        challenge: 'Lấy zipcode của team có Hồng Quang trừ lại cho 99046'
       },
       {
         id: "11",
         url: videoHai,
         isComplete: false,
-        auth: "ChaiHai",
-        answer: "???",
+        auth: "Chau Hai",
+        answer: "1705",
         subAnswer: 1705, 
-        message: 'Thank you Thinh, you have completed the challenge'
+        message: 'Congratulations! Thinh, you have completed the challenge',
+        challenge: 'Số đặc biệt tính ra từ tất cả kết quả trong những câu hỏi trước'
       }
     ]
   },
