@@ -115,7 +115,7 @@ export const store = new Vuex.Store({
         auth: "Chau Hai",
         answer: "1705",
         subAnswer: 1705, 
-        message: 'Congratulations! Thinh, you have completed the challenge',
+        message: 'Thinh, you have completed the challenge.',
         challenge: 'Số đặc biệt tính ra từ tất cả kết quả trong những câu hỏi trước'
       }
     ]

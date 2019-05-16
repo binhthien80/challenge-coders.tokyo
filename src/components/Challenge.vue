@@ -9,13 +9,15 @@
     >
       <div v-if="!loading">
         <video width="100%" controls :src="getVideoChallenge.url"></video>
-        <div class="answer">
-          <v-text-field
+        <v-text-field
             label="Your answer is..."
             v-model="aws"
             required
             v-if="getVideoChallenge.id > 2"
+            class="input-ans"
           ></v-text-field>
+        <div class="answer">
+          <BottomSheets v-if="getVideoChallenge.id > 2"/>
           <div class="text-xs-center" @click="test()">
             <v-btn
               :disabled="dialog"
@@ -23,7 +25,7 @@
               class="white--text"
               color="success darken-2"
               @click="dialog = true"
-            >{{ getVideoChallenge.id < 3 ? 'Next challenge' : 'test' }}</v-btn>
+            >{{ getVideoChallenge.id < 3 ? 'Next challenge' : 'Test' }}</v-btn>
             <v-dialog v-model="dialog" hide-overlay persistent width="300">
               <v-card color="success" dark>
                 <v-card-text>
@@ -34,12 +36,13 @@
             </v-dialog>
           </div>
         </div>
-        <BottomSheets />
       </div>
     </transition>
     <div class="congratulations" v-if="loading1">
+      <p v-if="getVideoChallenge.id === '11'">Congratulations!</p>
       <p>{{ getVideoChallenge.message }}</p>
     </div>
+    <div class="overlay" v-if="dialog"></div>
   </div>
 </template>
 <script>
@@ -100,6 +103,15 @@ export default {
 };
 </script>
 <style lang="scss" scope>
+.overlay {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+}
 .challenge-ct {
   height: 90vh;
   overflow: auto;
@@ -116,6 +128,19 @@ export default {
   align-items: center;
   margin: auto;
   margin-top: 20px;
+}
+
+.answer {
+  margin-top: 0;
+}
+
+.congratulations {
+  flex-direction: column;
+}
+
+.input-ans {
+  width: 90%;
+  margin: 10px auto 0;
 }
 
 .congratulations {

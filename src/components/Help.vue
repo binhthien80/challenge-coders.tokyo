@@ -29,6 +29,17 @@
                 <span v-if="plus" class="plus">+</span>
             </transition>
              {{ resultCL }}</p>
+             <transition
+                name="custom-classes-transition"
+                enter-active-class="animated bounceInRight"
+                leave-active-class="animated bounceOutRight"
+                :duration="{ enter: 1000, leave: 1000 }"
+              >
+             <div class="text-help" v-if="text">
+               <p>The result 1705 also is your birthday... Happy birthday to you.</p>
+               <img src="@/assets/cake.svg"/>
+             </div>
+            </transition>
       </div>
     </transition>
     <v-btn
@@ -89,7 +100,8 @@ export default {
       ldRs: false,
       scCL: true,
       resultCL: 0,
-      plus: false
+      plus: false,
+      text: false
     };
   },
   watch : {
@@ -107,6 +119,7 @@ export default {
       this.scCL = true
       this.resultCL = 0
       this.plus = true
+      this.text = false
       this.items = _.map(this.items, o => o.st = true && o)
 
       this.items.forEach((i, index) => {
@@ -117,6 +130,7 @@ export default {
             }
             if(index === 7) {
                 setTimeout(() => this.plus = false, 1500)
+                setTimeout(() => this.text = true, 4000)
             }
         }, 2500 * (index + 1))
       })
@@ -150,12 +164,38 @@ export default {
     padding: 5px;
   }
 }
+.text-help {
+  position: absolute;
+  margin-top: 130px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+
+  & > p {
+    font-size: 18px !important;
+    font-weight: 300 !important;
+  }
+
+  & > img {
+    width:  100px;
+    height: 100px;
+    border-radius: 0;
+    border: none;
+  }
+}
 .flip-list-move {
   transition: transform 1s;
 }
 
 .result-challenge-11 {
   padding-top: 10px;
+  text-align: center;
   p {
     font-size: 32px;
     font-weight: bold;
